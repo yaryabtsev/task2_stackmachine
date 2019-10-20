@@ -18,51 +18,51 @@
 
 namespace xi {
 
-    IntStack::IntStack(size_t sz) : _ssize(sz), _head(0) 
-    {
-        _stack = new int[sz];
-    }
+IntStack::IntStack(size_t sz) : _ssize(sz), _head(0) 
+{
+    _stack = new int[sz];
+}
 
-    IntStack::~IntStack() 
-    {
-        delete[] _stack;
-        _stack = nullptr;
-    }
+IntStack::~IntStack() 
+{
+    delete[] _stack;
+    _stack = nullptr;
+}
 
-    void IntStack::push(int el) 
-    {
-        if (_head == _ssize)
-            throw std::logic_error("int_stack overflow, can't push more elements");
-        _stack[_head++] = el;
-    }
+void IntStack::push(int el) 
+{
+    if (_head == _ssize)
+        throw std::logic_error("int_stack overflow, can't push more elements");
+    _stack[_head++] = el;
+}
 
-    int IntStack::top() 
-    {
-        if (_head == 0)
-            throw std::logic_error("int_stack error, stack is empty");
-        return _stack[_head - 1];
-    }
+int IntStack::top() 
+{
+    if (_head == 0)
+        throw std::logic_error("int_stack error, stack is empty");
+    return _stack[_head - 1];
+}
 
-    int IntStack::pop() 
-    {
-        if (_head == 0)
-            throw std::logic_error("int_stack error, stack is empty");
-        return _stack[--_head];
-    }
+int IntStack::pop() 
+{
+    if (_head == 0)
+        throw std::logic_error("int_stack error, stack is empty");
+    return _stack[--_head];
+}
 
-    void IntStack::clear() 
-    {
-        _head = 0;
-    }
+void IntStack::clear() 
+{
+    _head = 0;
+}
 
-    bool IntStack::isEmpty() const 
-    {
-        return _head == 0;
-    }
+bool IntStack::isEmpty() const 
+{
+    return _head == 0;
+}
 
-    bool IntStack::isFull() const 
-    {
-        return _head == _ssize;
-    }
+bool IntStack::isFull() const 
+{
+    return _head == _ssize;
+}
 } // namespace xi
 
