@@ -114,6 +114,8 @@ namespace xi {
 
     int StackMachine::calculate(const std::string& expr, bool clearStack)
     {
+        if(clearStack)
+            _s.clear();
         std::string el = "";
         int number = 0;
         for (auto iter = expr.begin(); iter != expr.end(); ++iter) {
