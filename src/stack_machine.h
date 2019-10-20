@@ -21,16 +21,16 @@
 
 // TODO: Uncomment operations from your variant!!
 #define PLUS_OP       // default
-//#define MINUS_OP      // variant 1
-//#define MULT_OP       // variant 2
-//#define DIV_OP        // variant 3
-//#define CHOICE_OP     // variant 4
-//#define ASSIGN_OP     // variant 5
-//#define SIG_CHANGE_OP // variant 6
-//#define INVER_OP      // variant 7
-//#define AND_OP        // variant 8
-//#define OR_OP         // variant 9
-//#define POW_OP        // variant 10
+#define MINUS_OP      // variant 1
+#define MULT_OP       // variant 2
+#define DIV_OP        // variant 3
+#define CHOICE_OP     // variant 4
+#define ASSIGN_OP     // variant 5
+#define SIG_CHANGE_OP // variant 6
+#define INVER_OP      // variant 7
+#define AND_OP        // variant 8
+#define OR_OP         // variant 9
+#define POW_OP        // variant 10
 
 
 #include <map>
@@ -40,10 +40,9 @@
 namespace xi {
 
 /** Declares an interface for operator (operation)
- *
- */
-class IOperation
-{
+*
+*/
+class IOperation {
 public:
     /** Enumerates all possible arity of operations
      *
@@ -67,6 +66,7 @@ public:
      *  Method is not intended to change an object's state.
      */
     virtual Arity getArity() const = 0;
+
 protected:
     /** Destructor must not be public due to It is not intended to delete an object through this interface!!
      *
@@ -79,9 +79,9 @@ protected:
 
 
 /** An example of operation object that implements PLUS binary operation
- *
- *  Note, that IOperation interface should be inherited with public modifier
- */
+*
+*  Note, that IOperation interface should be inherited with public modifier
+*/
 class PlusOp : public IOperation {
 //public:
 //    virtual ~PlusOp() {}
@@ -91,75 +91,100 @@ public:
 
     /** If a given operator symb is not '+", an exception is thrown*/
     virtual int operation(char op, int a, int b, int c) override;
+
     virtual Arity getArity() const override;
 }; // class PlusOp
 
 
 #ifdef MINUS_OP
 class MinusOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
+    virtual int operation(char op, int a, int b, int c) override;
+
+    virtual Arity getArity() const override;
 };
 #endif
 
 #ifdef MULT_OP
+
 class MultOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
+public:
+    virtual int operation(char op, int a, int b, int c) override;
+
+    virtual Arity getArity() const override;
 };
+
 #endif
 
 #ifdef DIV_OP
+
 class DivOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
+    virtual int operation(char op, int a, int b, int c) override;
+
+    virtual Arity getArity() const override;
 };
+
 #endif
 
 #ifdef CHOICE_OP
 class ChoiceOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
+    virtual int operation(char op, int a, int b, int c) override;
+
+    virtual Arity getArity() const override;
 };
 #endif
 
 #ifdef ASSIGN_OP
 class AssignOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
+    virtual int operation(char op, int a, int b, int c) override;
+
+    virtual Arity getArity() const override;
 };
 #endif
 
 #ifdef SIG_CHANGE_OP
 class SigChangeOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
+    virtual int operation(char op, int a, int b, int c) override;
+
+    virtual Arity getArity() const override;
 };
 #endif
 
 #ifdef INVER_OP
 class InverOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
+    virtual int operation(char op, int a, int b, int c) override;
+
+    virtual Arity getArity() const override;
 };
 #endif
 
 #ifdef AND_OP
 class AndOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
+    virtual int operation(char op, int a, int b, int c) override;
+
+    virtual Arity getArity() const override;
 };
 #endif
 
 #ifdef OR_OP
+
 class OrOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
+    virtual int operation(char op, int a, int b, int c) override;
+
+    virtual Arity getArity() const override;
 };
+
 #endif
 
 #ifdef POW_OP
 class PowOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
+    virtual int operation(char op, int a, int b, int c) override;
+
+    virtual Arity getArity() const override;
 };
 #endif
 
 
-
-
-class StackMachine
-{
+class StackMachine {
 public:
     // types
     typedef std::map<char, IOperation*> SymbolToOperMap;
@@ -173,14 +198,15 @@ public:
      *  !The method implementation should be shred with students!
      */
     void registerOperation(char symb, IOperation* oper);
-    
+
     const SymbolToOperMap& getRegisteredOperations() const { return _opers; }
-    
+
     /** For a given symb returns an operation object.
      *
      *  If the given symbol is not mapped to any operation, a nullptr is returned.
      */
     IOperation* getOperation(char symb);
+
 public:
 
     /** Calculates given expression using the shared stack and returns the value on its top.
@@ -195,6 +221,7 @@ public:
      *  an exception is thrown.
      */
     int calculate(const std::string& expr, bool clearStack = true);
+
 public:
 
     // sets/gets
